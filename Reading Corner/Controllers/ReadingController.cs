@@ -11,11 +11,11 @@ using Reading_Corner.Data;
 
 namespace Reading_Corner.Controllers
 {
-    public class ReadingController: Controller
+    public class ReadingRecordController: Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public ReadingController(ApplicationDbContext context)
+        public ReadingRecordController(ApplicationDbContext context)
         {
             _context = context;
         }
