@@ -86,20 +86,24 @@ namespace Reading_Corner.Entities
                          Name = "Harry Potter",
                          Pages = 45,
                          Minutes = 30,
+                         LogDate = Convert.ToDateTime("12/25/2017")
 
-                     },
+                },
 
                      new ReadingRecord
                      {
                          Name = "Geronimo Stilton",
                          Minutes = 30,
                          Pages = 40,
+                         LogDate = Convert.ToDateTime("12/26/2017")
                      },
                      new ReadingRecord
                      {
                          Name = "Harry Potter",
                          Minutes = 40,
                          Pages = 30,
+                         LogDate = Convert.ToDateTime("12/27/2017")
+
                      }
 
                 );

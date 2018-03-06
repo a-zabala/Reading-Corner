@@ -5,14 +5,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h1 class ="red-font">Reading Log</h1 class>
 
 <p>
     <a asp-action="Create">Create New</a>
+  
+   
 </p>
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LogDate)
+            </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
@@ -28,6 +33,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LogDate)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>

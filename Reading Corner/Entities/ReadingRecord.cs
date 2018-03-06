@@ -8,6 +8,7 @@ namespace Reading_Corner.Entities
     public class ReadingRecord
     {
         public int ID { get; set; }
+        public DateTime LogDate { get; set; }
         public string Name { get; set; }
         public int Minutes { get; set; }
         public int Pages { get; set; }
