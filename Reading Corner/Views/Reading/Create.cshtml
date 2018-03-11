@@ -7,7 +7,7 @@
 
 <h2>Create</h2>
 
-<h4>ReadingRecord</h4>
+<h4 class ="red-font">ReadingRecord</h4 class>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -17,6 +17,11 @@
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LogDate" class="control-label"></label>
+                <input asp-for="LogDate" class="form-control" />
+                <span asp-validation-for="LogDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Minutes" class="control-label"></label>
