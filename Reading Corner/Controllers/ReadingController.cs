@@ -81,7 +81,10 @@ namespace Reading_Corner.Controllers
             }
             return View(readingRecord);
         }
-
+        public async Task<IActionResult> Student(int? id)
+        {
+            return View("Index",await _context.ReadingRecords.Where(x => x.ID==id).ToListAsync());
+        }
         // POST: Reading/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.

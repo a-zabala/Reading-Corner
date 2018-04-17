@@ -9,7 +9,7 @@
     ViewData["Title"] = "Log in";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h2 class ="red-font" >@ViewData["Title"]</h2 class>
 <div class="row">
     <div class="col-md-4">
         <section>
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-default">Log in</button>
+                    <button type="submit" class="btn btn-success">Log in</button>
                 </div>
                 <div class="form-group">
                     <p>
@@ -50,7 +50,7 @@
         </section>
     </div>
     <div class="col-md-6 col-md-offset-2">
-        <section>
+        @*<section>
             <h4>Use another service to log in.</h4>
             <hr />
             @{
@@ -78,7 +78,7 @@
                     </form>
                 }
             }
-        </section>
+        </section>*@
     </div>
 </div>
 

@@ -12,22 +12,22 @@
 </p>
 <table class="table">
     <thead>
-        <tr>
+        <tr class="table-success">
                 <th>
-                    @Html.DisplayNameFor(model => model.Name)
+                    <i> @Html.DisplayNameFor(model => model.Name)</i>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Genre)
+                    <i>@Html.DisplayNameFor(model => model.Genre)</i>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Author)
+                    <i>@Html.DisplayNameFor(model => model.Author)</i>
                 </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+        <tr class="table-warning">
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>

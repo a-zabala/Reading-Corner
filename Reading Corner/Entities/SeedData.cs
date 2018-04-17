@@ -55,23 +55,20 @@ namespace Reading_Corner.Entities
                      {
                          FirstName = "Celina",
                          LastName = "Zabala",
-                         Teacher = "Dixon",
-                         CurrentBook = "Harry Potter"
+                         Teacher = "Dixon"
                      },
 
                      new Student
                      {
                          FirstName = "Molly",
                          LastName = "Matheny",
-                         Teacher = "Dixon",
-                         CurrentBook = "Sisters"
+                         Teacher = "Dixon"
                      },
                      new Student
                      {
                          FirstName = "Elysia",
                          LastName = "Zabala",
-                         Teacher = "Finck",
-                         CurrentBook = "Holes"
+                         Teacher = "Finck"
                      }
 
                 );

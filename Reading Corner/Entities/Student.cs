@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,7 +16,20 @@ namespace Reading_Corner.Entities
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
         public string Teacher { get; set; }
-        [Display(Name = "Current Book")]
-        public string CurrentBook { get; set; }
+
+        [Display(Name = "Current Book"), NotMapped]
+        public string CurrentBook {
+            get
+            {
+                if (ReadingRecords != null && ReadingRecords.Count > 0)
+                {
+                    return ReadingRecords.OrderByDescending(x => x.LogDate).FirstOrDefault().Name;
+                }
+                return string.Empty;
+                
+            }
+        }
+
+        public virtual List<ReadingRecord> ReadingRecords { get; set; }
     }
 }
