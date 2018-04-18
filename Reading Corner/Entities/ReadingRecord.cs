@@ -9,7 +9,13 @@ namespace Reading_Corner.Entities
     public class ReadingRecord
     {
         public int ID { get; set; }
+
+        public string LastName { get; set; }
+        
+
+        
         [Display(Name = "Log Date")]
+
         [DataType(DataType.Date)]
 
         public DateTime LogDate { get; set; }

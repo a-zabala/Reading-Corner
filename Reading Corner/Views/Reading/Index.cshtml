@@ -19,6 +19,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.LogDate)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
@@ -36,6 +39,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.LogDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)

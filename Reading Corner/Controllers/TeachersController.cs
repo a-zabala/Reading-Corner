@@ -5,28 +5,27 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Reading_Corner.Entities;
-using Reading_Corner.Models;
 using Reading_Corner.Data;
+using Reading_Corner.Entities;
 
 namespace Reading_Corner.Controllers
 {
-    public class ReadingController: Controller
+    public class TeachersController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public ReadingController(ApplicationDbContext context)
+        public TeachersController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Reading
+        // GET: Teachers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ReadingRecords.ToListAsync());
+            return View(await _context.Teachers.ToListAsync());
         }
 
-        // GET: Reading/Details/5
+        // GET: Teachers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,39 +33,39 @@ namespace Reading_Corner.Controllers
                 return NotFound();
             }
 
-            var readingRecord = await _context.ReadingRecords
+            var teacher = await _context.Teachers
                 .SingleOrDefaultAsync(m => m.ID == id);
-            if (readingRecord == null)
+            if (teacher == null)
             {
                 return NotFound();
             }
 
-            return View(readingRecord);
+            return View(teacher);
         }
 
-        // GET: Reading/Create
+        // GET: Teachers/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Reading/Create
+        // POST: Teachers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,LastName,Name,LogDate,Minutes,Pages")] ReadingRecord readingRecord)
+        public async Task<IActionResult> Create([Bind("ID,FName,LName,ClassSize")] Teacher teacher)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(readingRecord);
+                _context.Add(teacher);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(readingRecord);
+            return View(teacher);
         }
 
-        // GET: Reading/Edit/5
+        // GET: Teachers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,25 +73,22 @@ namespace Reading_Corner.Controllers
                 return NotFound();
             }
 
-            var readingRecord = await _context.ReadingRecords.SingleOrDefaultAsync(m => m.ID == id);
-            if (readingRecord == null)
+            var teacher = await _context.Teachers.SingleOrDefaultAsync(m => m.ID == id);
+            if (teacher == null)
             {
                 return NotFound();
             }
-            return View(readingRecord);
+            return View(teacher);
         }
-        public async Task<IActionResult> Student(int? id)
-        {
-            return View("Index",await _context.ReadingRecords.Where(x => x.ID==id).ToListAsync());
-        }
-        // POST: Reading/Edit/5
+
+        // POST: Teachers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,LastName,Name,LogDate,Minutes,Pages")] ReadingRecord readingRecord)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,FName,LName,ClassSize")] Teacher teacher)
         {
-            if (id != readingRecord.ID)
+            if (id != teacher.ID)
             {
                 return NotFound();
             }
@@ -101,12 +97,12 @@ namespace Reading_Corner.Controllers
             {
                 try
                 {
-                    _context.Update(readingRecord);
+                    _context.Update(teacher);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ReadingRecordExists(readingRecord.ID))
+                    if (!TeacherExists(teacher.ID))
                     {
                         return NotFound();
                     }
@@ -117,10 +113,10 @@ namespace Reading_Corner.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(readingRecord);
+            return View(teacher);
         }
 
-        // GET: Reading/Delete/5
+        // GET: Teachers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -128,30 +124,30 @@ namespace Reading_Corner.Controllers
                 return NotFound();
             }
 
-            var readingRecord = await _context.ReadingRecords
+            var teacher = await _context.Teachers
                 .SingleOrDefaultAsync(m => m.ID == id);
-            if (readingRecord == null)
+            if (teacher == null)
             {
                 return NotFound();
             }
 
-            return View(readingRecord);
+            return View(teacher);
         }
 
-        // POST: Reading/Delete/5
+        // POST: Teachers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var readingRecord = await _context.ReadingRecords.SingleOrDefaultAsync(m => m.ID == id);
-            _context.ReadingRecords.Remove(readingRecord);
+            var teacher = await _context.Teachers.SingleOrDefaultAsync(m => m.ID == id);
+            _context.Teachers.Remove(teacher);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ReadingRecordExists(int id)
+        private bool TeacherExists(int id)
         {
-            return _context.ReadingRecords.Any(e => e.ID == id);
+            return _context.Teachers.Any(e => e.ID == id);
         }
     }
 }

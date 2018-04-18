@@ -17,6 +17,7 @@ namespace Reading_Corner.Data
         public DbSet<Reading_Corner.Entities.Book> Books { get; set; }
         public DbSet<Reading_Corner.Entities.Student> Students { get; set; }
         public DbSet<Reading_Corner.Entities.ReadingRecord> ReadingRecords { get; set; }
+        public DbSet<Reading_Corner.Entities.Teacher> Teachers { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

@@ -80,6 +80,7 @@ namespace Reading_Corner.Entities
                     context.ReadingRecords.AddRange(
                      new ReadingRecord
                      {
+                         LastName = "test",
                          Name = "Harry Potter",
                          Pages = 45,
                          Minutes = 30,
@@ -89,6 +90,7 @@ namespace Reading_Corner.Entities
 
                      new ReadingRecord
                      {
+                         LastName = "test",
                          Name = "Geronimo Stilton",
                          Minutes = 30,
                          Pages = 40,
@@ -96,6 +98,7 @@ namespace Reading_Corner.Entities
                      },
                      new ReadingRecord
                      {
+                         LastName = "test",
                          Name = "Harry Potter",
                          Minutes = 40,
                          Pages = 30,
@@ -105,7 +108,33 @@ namespace Reading_Corner.Entities
 
                 );
                 }
-                context.SaveChanges();
+                if (!context.Teachers.Any())
+                {
+
+                    context.Teachers.AddRange(
+                     new Teacher
+                     {
+                         FName = "Charlee",
+                         LName = "Dixon",
+                         ClassSize = 4
+                     },
+
+                     new Teacher 
+                     {
+                         FName = "Jennifer",
+                         LName = "Finck",
+                         ClassSize = 3
+                     },
+                     new Teacher
+                     {
+                         FName = "Joseph",
+                         LName = "Sterns",
+                         ClassSize = 2
+                     }
+
+                );
+                }
+                    context.SaveChanges();
 
             }
         } 
