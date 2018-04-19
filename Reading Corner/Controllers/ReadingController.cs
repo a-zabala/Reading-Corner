@@ -55,7 +55,7 @@ namespace Reading_Corner.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,LastName,Name,LogDate,Minutes,Pages")] ReadingRecord readingRecord)
+        public async Task<IActionResult> Create([Bind("ID,Student.LastName,Name,LogDate,Minutes,Pages")] ReadingRecord readingRecord)
         {
             if (ModelState.IsValid)
             {

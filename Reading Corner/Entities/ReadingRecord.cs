@@ -11,6 +11,7 @@ namespace Reading_Corner.Entities
         public int ID { get; set; }
 
         public string LastName { get; set; }
+        Student student { get; set; }
         
 
         
@@ -19,6 +20,8 @@ namespace Reading_Corner.Entities
         [DataType(DataType.Date)]
 
         public DateTime LogDate { get; set; }
+
+        [Display(Name = "Book Title")]
         public string Name { get; set; }
         public int Minutes { get; set; }
         public int Pages { get; set; }
