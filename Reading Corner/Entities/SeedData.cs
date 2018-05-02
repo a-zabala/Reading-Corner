@@ -47,96 +47,102 @@ namespace Reading_Corner.Entities
                 }
 
 
-                if (!context.Students.Any())
-                {
-
-                    context.Students.AddRange(
-                     new Student
-                     {
-                         FirstName = "Celina",
-                         LastName = "Zabala",
-                         Teacher = "Dixon"
-                     },
-
-                     new Student
-                     {
-                         FirstName = "Molly",
-                         LastName = "Matheny",
-                         Teacher = "Dixon"
-                     },
-                     new Student
-                     {
-                         FirstName = "Elysia",
-                         LastName = "Zabala",
-                         Teacher = "Finck"
-                     }
-
-                );
-                }
-
-                if (!context.ReadingRecords.Any())
-                {
-
-                    context.ReadingRecords.AddRange(
-                     new ReadingRecord
-                     {
-                         LastName = "test",
-                         Name = "Harry Potter",
-                         Pages = 45,
-                         Minutes = 30,
-                         LogDate = Convert.ToDateTime("12/25/2017")
-
-                },
-
-                     new ReadingRecord
-                     {
-                         LastName = "test",
-                         Name = "Geronimo Stilton",
-                         Minutes = 30,
-                         Pages = 40,
-                         LogDate = Convert.ToDateTime("12/26/2017")
-                     },
-                     new ReadingRecord
-                     {
-                         LastName = "test",
-                         Name = "Harry Potter",
-                         Minutes = 40,
-                         Pages = 30,
-                         LogDate = Convert.ToDateTime("12/27/2017")
-
-                     }
-
-                );
-                }
                 if (!context.Teachers.Any())
                 {
 
                     context.Teachers.AddRange(
-                     new Teacher
-                     {
-                         FName = "Charlee",
-                         LName = "Dixon",
-                         ClassSize = 4
-                     },
+                        new Teacher
+                        {
+                            FName = "Charlee",
+                            LName = "Dixon",
+                            ClassSize = 1,
+                            Students = new List<Student>()
+                            {
+                                new Student
+                                {
+                                FirstName = "Celina",
+                                LastName = "Zabala",
+                                // Teacher = "Dixon",
 
-                     new Teacher 
-                     {
-                         FName = "Jennifer",
-                         LName = "Finck",
-                         ClassSize = 3
-                     },
-                     new Teacher
-                     {
-                         FName = "Joseph",
-                         LName = "Sterns",
-                         ClassSize = 2
-                     }
 
-                );
+                                ReadingRecords = new List<ReadingRecord>()
+                                 {
+                                  new ReadingRecord
+                                   {
+
+                                     Name = "Harry Potter",
+                                     Pages = 45,
+                                     Minutes = 30,
+                                     LogDate = Convert.ToDateTime("12/25/2017")
+
+                                   },
+                                   new ReadingRecord
+                                   {
+
+                                     Name = "Harry Potter",
+                                     Pages = 45,
+                                     Minutes = 30,
+                                     LogDate = Convert.ToDateTime("12/29/2017")
+                                   }
+
+                                }
+
+                                }
+                            }
+
+                            },
+
+                            new Teacher
+                            {
+                                FName = "Jennifer",
+                                LName = "Finck",
+                                ClassSize = 2,
+                                Students = new List<Student>()
+                                {
+                                 new Student
+                                 {
+                                  FirstName = "Molly",
+                                  LastName = "Matheny",
+                                  //Teacher = "Dixon",
+                                  ReadingRecords = new List<ReadingRecord>()
+                                    {
+                                      new ReadingRecord
+                                         {
+
+                                          Name = "Geronimo Stilton",
+                                          Minutes = 30,
+                                          Pages = 40,
+                                          LogDate = Convert.ToDateTime("12/26/2017")
+                                         }
+
+                                     }
+                                   },
+                                   new Student
+                                   {
+                                    FirstName = "Elysia",
+                                    LastName = "Zabala",
+                                    //Teacher = "Finck",
+                                    ReadingRecords = new List<ReadingRecord>()
+                                     {
+                                        new ReadingRecord
+                                         {
+                                           Name = "Harry Potter",
+                                           Minutes = 40,
+                                           Pages = 30,
+                                           LogDate = Convert.ToDateTime("12/27/2017")
+                                         }
+
+                                     }
+                                   }
+                             }
+                            } 
+                     );
                 }
-                    context.SaveChanges();
 
-            }
-        } 
+                context.SaveChanges();
+
+            }   
+            
+        }
     }
 }

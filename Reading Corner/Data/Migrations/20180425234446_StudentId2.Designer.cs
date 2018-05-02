@@ -11,9 +11,10 @@ using System;
 namespace Reading_Corner.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180425234446_StudentId2")]
+    partial class StudentId2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -175,11 +176,9 @@ namespace Reading_Corner.Data.Migrations
 
                     b.Property<string>("LastName");
 
-                    b.Property<int>("TeacherID");
+                    b.Property<string>("Teacher");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("TeacherID");
 
                     b.ToTable("Students");
                 });
@@ -301,14 +300,6 @@ namespace Reading_Corner.Data.Migrations
                     b.HasOne("Reading_Corner.Entities.Student", "Student")
                         .WithMany("ReadingRecords")
                         .HasForeignKey("StudentID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Reading_Corner.Entities.Student", b =>
-                {
-                    b.HasOne("Reading_Corner.Entities.Teacher", "Teacher")
-                        .WithMany("Students")
-                        .HasForeignKey("TeacherID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

@@ -10,10 +10,9 @@ namespace Reading_Corner.Entities
     {
         public int ID { get; set; }
 
-        public string LastName { get; set; }
-        Student student { get; set; }
+        public int StudentID { get; set; }
         
-
+        public Student Student { get; set; }
         
         [Display(Name = "Log Date")]
 

@@ -11,11 +11,13 @@ namespace Reading_Corner.Entities
     {
 
         public int ID { get; set; }
+        public int TeacherID { get; set; }
+        public Teacher Teacher { get; set; }
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        public string Teacher { get; set; }
+      //  public string TeacherN { get; set; }
 
         [Display(Name = "Current Book"), NotMapped]
         public string CurrentBook {
@@ -30,6 +32,7 @@ namespace Reading_Corner.Entities
             }
         }
 
-        public virtual List<ReadingRecord> ReadingRecords { get; set; }
+        public List<ReadingRecord> ReadingRecords { get; set; }
+        
     }
 }

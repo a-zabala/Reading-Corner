@@ -15,7 +15,9 @@ namespace Reading_Corner.Entities
         public string LName { get; set; }
         [Display(Name = "Class Size")]
         public int ClassSize { get; set; }
-       
-        
-        }
+        public List<Student> Students { get; set; }
+
+
+
+    }
 }

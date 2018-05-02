@@ -55,7 +55,7 @@ namespace Reading_Corner.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Student.LastName,Name,LogDate,Minutes,Pages")] ReadingRecord readingRecord)
+        public async Task<IActionResult> Create([Bind("ID,,Name,LogDate,Minutes,Pages")] ReadingRecord readingRecord)
         {
             if (ModelState.IsValid)
             {
@@ -83,14 +83,14 @@ namespace Reading_Corner.Controllers
         }
         public async Task<IActionResult> Student(int? id)
         {
-            return View("Index",await _context.ReadingRecords.Where(x => x.ID==id).ToListAsync());
+            return View("Index",await _context.ReadingRecords.Where(x => x.StudentID==id).ToListAsync());
         }
         // POST: Reading/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,LastName,Name,LogDate,Minutes,Pages")] ReadingRecord readingRecord)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,LogDate,Minutes,Pages")] ReadingRecord readingRecord)
         {
             if (id != readingRecord.ID)
             {

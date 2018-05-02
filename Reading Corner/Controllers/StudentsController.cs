@@ -29,7 +29,7 @@ namespace Reading_Corner.Controllers
         public async Task<IActionResult> Index()
         {
 
-            return View(await _context.Students.Include("ReadingRecords").ToListAsync());
+            return View(await _context.Students.Include("ReadingRecords").Include(nameof(Student.Teacher)).ToListAsync());
         }
 
         // GET: Students/Details/5
@@ -40,7 +40,7 @@ namespace Reading_Corner.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Students
+            var student = await _context.Students.Include(d=> d.ReadingRecords)
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (student == null)
             {

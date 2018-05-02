@@ -11,9 +11,10 @@ using System;
 namespace Reading_Corner.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180423035732_Table")]
+    partial class Table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,7 +158,7 @@ namespace Reading_Corner.Data.Migrations
 
                     b.Property<int>("Pages");
 
-                    b.Property<int>("StudentID");
+                    b.Property<int?>("StudentID");
 
                     b.HasKey("ID");
 
@@ -175,11 +176,9 @@ namespace Reading_Corner.Data.Migrations
 
                     b.Property<string>("LastName");
 
-                    b.Property<int>("TeacherID");
+                    b.Property<string>("Teacher");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("TeacherID");
 
                     b.ToTable("Students");
                 });
@@ -298,18 +297,9 @@ namespace Reading_Corner.Data.Migrations
 
             modelBuilder.Entity("Reading_Corner.Entities.ReadingRecord", b =>
                 {
-                    b.HasOne("Reading_Corner.Entities.Student", "Student")
+                    b.HasOne("Reading_Corner.Entities.Student")
                         .WithMany("ReadingRecords")
-                        .HasForeignKey("StudentID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Reading_Corner.Entities.Student", b =>
-                {
-                    b.HasOne("Reading_Corner.Entities.Teacher", "Teacher")
-                        .WithMany("Students")
-                        .HasForeignKey("TeacherID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("StudentID");
                 });
 #pragma warning restore 612, 618
         }
