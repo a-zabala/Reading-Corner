@@ -5,7 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class ="red-font" >Teachers</h2 class>
+<h2 class="red-font">
+    Teachers
+</h2>
 
 <p>
     <a class="btn btn-primary btn-lg button-green" asp-action="Create">Create New</a>
@@ -35,8 +37,7 @@
                 @Html.DisplayFor(modelItem => item.LName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ClassSize)
-            </td>
+                @Html.DisplayFor(modelItem => item.ClassSize)</td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ID">Details</a> |

@@ -55,7 +55,7 @@ namespace Reading_Corner.Entities
                         {
                             FName = "Charlee",
                             LName = "Dixon",
-                            ClassSize = 1,
+                            
                             Students = new List<Student>()
                             {
                                 new Student
@@ -96,7 +96,7 @@ namespace Reading_Corner.Entities
                             {
                                 FName = "Jennifer",
                                 LName = "Finck",
-                                ClassSize = 2,
+                                
                                 Students = new List<Student>()
                                 {
                                  new Student

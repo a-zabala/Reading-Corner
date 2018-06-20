@@ -17,6 +17,12 @@ namespace Reading_Corner.Entities
         public string FirstName { get; set; }
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
+        [Display(Name = "Student")]
+        public string Name { get
+            {
+                return FirstName + " " + LastName;
+
+            } }
       //  public string TeacherN { get; set; }
 
         [Display(Name = "Current Book"), NotMapped]

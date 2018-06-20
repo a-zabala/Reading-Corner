@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Reading_Corner.Data;
+using Reading_Corner.Entities;
 using Reading_Corner.Models;
 using Reading_Corner.Models.AccountViewModels;
 using Reading_Corner.Services;
@@ -24,17 +26,20 @@ namespace Reading_Corner.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
+        private readonly ApplicationDbContext _context;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _context = context;
         }
 
         [TempData]
@@ -56,6 +61,8 @@ namespace Reading_Corner.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
+
+            
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
@@ -221,10 +228,19 @@ namespace Reading_Corner.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+
+
                 var result = await _userManager.CreateAsync(user, model.Password);
+               // var teacher = new Teacher() { FName = model.FirstName};
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+
+                    user = _context.Users.First(x => x.UserName == user.UserName);
+                    user.FirstName = model.FirstName;
+                    user.LastName = model.LastName;
+                    await _context.SaveChangesAsync();
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);

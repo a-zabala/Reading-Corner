@@ -14,7 +14,10 @@ namespace Reading_Corner.Entities
         [Display(Name = "Last Name")]
         public string LName { get; set; }
         [Display(Name = "Class Size")]
-        public int ClassSize { get; set; }
+        public int ClassSize { get
+        {if (Students == null) return 0;
+                return Students.Count;
+            } }
         public List<Student> Students { get; set; }
 
 

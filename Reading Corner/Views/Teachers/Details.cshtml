@@ -5,33 +5,96 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class ="red-font">Details</h2 class>
+<h2 class ="red-font">Teacher Details</h2 class>
 
 <div>
-    <h4 class ="red-font">Teacher</h4 class>
+    <h4>Teacher</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.FName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ClassSize)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ClassSize)
-        </dd>
-    </dl>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ClassSize)
+                </th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.FName)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.LName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ClassSize)
+                </td>
+
+
+
+            </tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+        </thead>
+    </table>
 </div>
+
 <div>
     <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Student Name
+            </th>
+            <th>
+                Teacher
+            </th>
+            <th>
+                Current Book 
+            </th>
+            <th>
+                Weekly Minutes
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in @Model.Students)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Teacher.LName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CurrentBook)
+                </td>
+                <td>
+                   To Do
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

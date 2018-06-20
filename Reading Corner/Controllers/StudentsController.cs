@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Reading_Corner.Entities;
 using Reading_Corner.Models;
 using Reading_Corner.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Reading_Corner.Controllers
 {
+    //[Authorize(Roles = "teacher")]
     public class StudentsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -29,7 +31,7 @@ namespace Reading_Corner.Controllers
         public async Task<IActionResult> Index()
         {
 
-            return View(await _context.Students.Include("ReadingRecords").Include(nameof(Student.Teacher)).ToListAsync());
+            return View(await _context.Students.Include(d => d.ReadingRecords).Include(d => d.Teacher).ToListAsync());
         }
 
         // GET: Students/Details/5
@@ -40,7 +42,7 @@ namespace Reading_Corner.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Students.Include(d=> d.ReadingRecords)
+            var student = await _context.Students.Include(d=> d.ReadingRecords).Include(d=> d.Teacher)
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (student == null)
             {
@@ -53,6 +55,13 @@ namespace Reading_Corner.Controllers
         // GET: Students/Create
         public IActionResult Create()
         {
+            var teachers =  _context.Teachers.ToList();
+            var teachersList = new List<SelectListItem>();
+            foreach (var teacher in teachers)
+            {
+                teachersList.Add(new SelectListItem { Text = teacher.LName, Value = teacher.ID.ToString() });
+            }
+            ViewBag.Teachers = teachersList;
             return View();
         }
 
@@ -61,7 +70,7 @@ namespace Reading_Corner.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,FirstName,LastName,Teacher,CurrentBook")] Student student)
+        public async Task<IActionResult> Create([Bind("ID,FirstName,LastName,TeacherID")] Student student)
         {
             if (ModelState.IsValid)
             {

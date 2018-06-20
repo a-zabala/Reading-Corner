@@ -22,7 +22,9 @@ namespace Reading_Corner.Controllers
 
         // GET: Reading
         public async Task<IActionResult> Index()
+
         {
+            var user = _context.Users.First(x => x.UserName == User.Identity.Name);
             return View(await _context.ReadingRecords.ToListAsync());
         }
 

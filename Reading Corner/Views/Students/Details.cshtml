@@ -6,17 +6,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class ="red-font" >Details</h2 class>
+<h2 class="red-font">Student Details</h2>
 
 <div>
     <h4>Student</h4>
     <hr />
-    
+
     <table class="table">
-       <thead>
+        <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.FirstName)
+                    @Html.DisplayNameFor(model => model.Name)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Teacher)
@@ -28,11 +28,11 @@
             </tr>
             <tr>
                 <td>
-                    @Html.DisplayFor(model => model.FirstName)
-                    @Html.DisplayFor(model => model.LastName)
+                    @Html.DisplayFor(model => model.Name)
+                   
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.TeacherID)
+                    @Html.DisplayFor(model => model.Teacher.LName)
                 </td>
                 <td>
                     @Html.DisplayFor(model => model.CurrentBook)
@@ -44,36 +44,81 @@
             <tr></tr>
             <tr></tr>
             <tr></tr>
-       </thead>
-   </table>
+        </thead>
+    </table>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Date
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Minutes
+            </th>
+            <th>
+                Pages
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in @Model.ReadingRecords)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LogDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Minutes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pages)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
 @*<dl class="dl-horizontal">
-    <dt>
-        @Html.DisplayNameFor(model => model.Name)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.Name)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.LogDate)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.LogDate)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.Minutes)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.Minutes)
-    </dd>
-    <dt>
-        @Html.DisplayNameFor(model => model.Pages)
-    </dt>
-    <dd>
-        @Html.DisplayFor(model => model.Pages)
-    </dd>
-</dl>*@
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LogDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LogDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Minutes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Minutes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Pages)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Pages)
+        </dd>
+    </dl>*@

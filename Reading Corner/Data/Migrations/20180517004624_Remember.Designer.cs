@@ -11,9 +11,10 @@ using System;
 namespace Reading_Corner.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180517004624_Remember")]
+    partial class Remember
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -212,12 +213,6 @@ namespace Reading_Corner.Data.Migrations
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
-
-                    b.Property<string>("FirstName")
-                        .HasMaxLength(30);
-
-                    b.Property<string>("LastName")
-                        .HasMaxLength(30);
 
                     b.Property<bool>("LockoutEnabled");
 

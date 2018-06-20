@@ -22,7 +22,7 @@ namespace Reading_Corner.Controllers
         // GET: Teachers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Teachers.ToListAsync());
+            return View(await _context.Teachers.Include(d=>d.Students).ToListAsync());
         }
 
         // GET: Teachers/Details/5
@@ -32,14 +32,17 @@ namespace Reading_Corner.Controllers
             {
                 return NotFound();
             }
-
+            
             var teacher = await _context.Teachers
                 .SingleOrDefaultAsync(m => m.ID == id);
+
             if (teacher == null)
             {
                 return NotFound();
             }
 
+            teacher.Students = _context.Students.Where(t => t.TeacherID == teacher.ID).Include(d => d.ReadingRecords).ToList();
+            
             return View(teacher);
         }
 
@@ -72,7 +75,7 @@ namespace Reading_Corner.Controllers
             {
                 return NotFound();
             }
-
+            
             var teacher = await _context.Teachers.SingleOrDefaultAsync(m => m.ID == id);
             if (teacher == null)
             {
@@ -123,8 +126,8 @@ namespace Reading_Corner.Controllers
             {
                 return NotFound();
             }
-
-            var teacher = await _context.Teachers
+            
+            var teacher = await _context.Teachers.Include(a => a.Students)
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (teacher == null)
             {
